@@ -20,3 +20,14 @@ const fetchBalances = async () => {
 };
 
 fetchBalances();
+
+// APPROVALS
+const fetchApprovals = async () => {
+  const response = await client.SecurityService.getApprovals(
+    "mantle-mainnet",
+    "0x40FEfD52714f298b9EaD6760753aAA720438D4bB"
+  );
+  console.log(response.data);
+};
+
+fetchApprovals();
