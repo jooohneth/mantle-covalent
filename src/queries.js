@@ -57,4 +57,21 @@ const fetchTransaction = async () => {
   console.log(response.data);
 };
 
-fetchTransaction();
+//fetchTransaction();
+
+//HISTORICAL TOKEN PRICE
+const fetchTokenPrice = async () => {
+  const response = await client.PricingService.getTokenPrices(
+    "mantle-mainnet",
+    "USD",
+    "0xcDA86A272531e8640cD7F1a92c01839911B90bb0",
+    {
+      from: "2024-05-01",
+      to: "2024-05-09",
+      pricesAtAsc: true,
+    }
+  );
+  console.log(response.data);
+};
+
+fetchTokenPrice();
