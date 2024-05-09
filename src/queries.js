@@ -19,7 +19,7 @@ const fetchBalances = async () => {
   console.log(response.data);
 };
 
-fetchBalances();
+//fetchBalances();
 
 // APPROVALS
 const fetchApprovals = async () => {
@@ -30,4 +30,16 @@ const fetchApprovals = async () => {
   console.log(response.data);
 };
 
-fetchApprovals();
+//fetchApprovals();
+
+// BLOCK
+
+const fetchBlock = async () => {
+  const response = await client.BaseService.getBlock(
+    "mantle-mainnet",
+    "latest"
+  );
+  console.log(response.data);
+};
+
+fetchBlock();
