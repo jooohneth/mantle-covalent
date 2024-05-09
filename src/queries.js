@@ -33,7 +33,6 @@ const fetchApprovals = async () => {
 //fetchApprovals();
 
 // BLOCK
-
 const fetchBlock = async () => {
   const response = await client.BaseService.getBlock(
     "mantle-mainnet",
@@ -42,4 +41,20 @@ const fetchBlock = async () => {
   console.log(response.data);
 };
 
-fetchBlock();
+//fetchBlock();
+
+// TRANSACTION
+const fetchTransaction = async () => {
+  const response = await client.TransactionService.getTransaction(
+    "mantle-mainnet",
+    "0x93ca28fc94d2e8d061d81a69663f237e02c5e16f849df93cfcd6deae2f4b9e42",
+    {
+      quoteCurrency: "USD",
+      noLogs: false,
+      withSafe: true,
+    }
+  );
+  console.log(response.data);
+};
+
+fetchTransaction();
