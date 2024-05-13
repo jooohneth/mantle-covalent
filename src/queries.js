@@ -3,11 +3,18 @@ import { CovalentClient } from "@covalenthq/client-sdk";
 
 const client = new CovalentClient(process.env.API_KEY);
 
+const params = {
+  network: "mantle-mainnet",
+  address: "0x94FEC56BBEcEaCC71c9e61623ACE9F8e1B1cf473",
+  tx: "0x93ca28fc94d2e8d061d81a69663f237e02c5e16f849df93cfcd6deae2f4b9e42",
+  token: "0xcDA86A272531e8640cD7F1a92c01839911B90bb0"
+}
+
 // BALANCES
-const fetchBalances = async () => {
+const fetchBalances = async ({network, address}) => {
   const response = await client.BalanceService.getTokenBalancesForWalletAddress(
-    "mantle-mainnet",
-    "0x40FEfD52714f298b9EaD6760753aAA720438D4bB",
+    network,
+    address,
     {
       nft: true,
       quoteCurrency: "USD",
@@ -19,35 +26,35 @@ const fetchBalances = async () => {
   console.log(response.data);
 };
 
-fetchBalances();
+fetchBalances(params);
 
 // APPROVALS
-const fetchApprovals = async () => {
+const fetchApprovals = async ({network, address}) => {
   const response = await client.SecurityService.getApprovals(
-    "mantle-mainnet",
-    "0x40FEfD52714f298b9EaD6760753aAA720438D4bB"
+    network,
+    address
   );
   console.log(response.data);
 };
 
-fetchApprovals();
+fetchApprovals(params);
 
 // BLOCK
-const fetchBlock = async () => {
+const fetchBlock = async ({network}) => {
   const response = await client.BaseService.getBlock(
-    "mantle-mainnet",
+    network,
     "latest"
   );
   console.log(response.data);
 };
 
-fetchBlock();
+fetchBlock(params);
 
 // TRANSACTION
-const fetchTransaction = async () => {
+const fetchTransaction = async ({network, tx}) => {
   const response = await client.TransactionService.getTransaction(
-    "mantle-mainnet",
-    "0x93ca28fc94d2e8d061d81a69663f237e02c5e16f849df93cfcd6deae2f4b9e42",
+    network,
+    tx,
     {
       quoteCurrency: "USD",
       noLogs: false,
@@ -57,14 +64,14 @@ const fetchTransaction = async () => {
   console.log(response.data);
 };
 
-fetchTransaction();
+fetchTransaction(params);
 
 //HISTORICAL TOKEN PRICE
-const fetchTokenPrice = async () => {
+const fetchTokenPrice = async ({network, token}) => {
   const response = await client.PricingService.getTokenPrices(
-    "mantle-mainnet",
+    network,
     "USD",
-    "0xcDA86A272531e8640cD7F1a92c01839911B90bb0",
+    token,
     {
       from: "2024-05-01",
       to: "2024-05-09",
@@ -74,4 +81,4 @@ const fetchTokenPrice = async () => {
   console.log(response.data);
 };
 
-fetchTokenPrice();
+fetchTokenPrice(params);
