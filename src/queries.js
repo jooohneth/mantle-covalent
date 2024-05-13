@@ -19,7 +19,7 @@ const fetchBalances = async () => {
   console.log(response.data);
 };
 
-//fetchBalances();
+fetchBalances();
 
 // APPROVALS
 const fetchApprovals = async () => {
@@ -30,7 +30,7 @@ const fetchApprovals = async () => {
   console.log(response.data);
 };
 
-//fetchApprovals();
+fetchApprovals();
 
 // BLOCK
 const fetchBlock = async () => {
@@ -41,7 +41,7 @@ const fetchBlock = async () => {
   console.log(response.data);
 };
 
-//fetchBlock();
+fetchBlock();
 
 // TRANSACTION
 const fetchTransaction = async () => {
@@ -57,7 +57,7 @@ const fetchTransaction = async () => {
   console.log(response.data);
 };
 
-//fetchTransaction();
+fetchTransaction();
 
 //HISTORICAL TOKEN PRICE
 const fetchTokenPrice = async () => {
