@@ -10,6 +10,7 @@ const params = {
   token: "0xcDA86A272531e8640cD7F1a92c01839911B90bb0"
 }
 
+
 // BALANCES
 const fetchBalances = async ({network, address}) => {
   const response = await client.BalanceService.getTokenBalancesForWalletAddress(
@@ -82,3 +83,11 @@ const fetchTokenPrice = async ({network, token}) => {
 };
 
 fetchTokenPrice(params);
+
+// GAS PRICES
+const fetchGasPrice = async ({network}) => {
+  const response = await client.BaseService.getGasPrices(network, "erc20", {quoteCurrency: "USD"})
+  console.log(response.data.items[0]);
+}
+
+fetchGasPrice(params)
