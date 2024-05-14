@@ -7,12 +7,11 @@ const params = {
   network: "mantle-mainnet",
   address: "0x94FEC56BBEcEaCC71c9e61623ACE9F8e1B1cf473",
   tx: "0x93ca28fc94d2e8d061d81a69663f237e02c5e16f849df93cfcd6deae2f4b9e42",
-  token: "0xcDA86A272531e8640cD7F1a92c01839911B90bb0"
-}
+  token: "0xcDA86A272531e8640cD7F1a92c01839911B90bb0",
+};
 
-
-// BALANCES
-const fetchBalances = async ({network, address}) => {
+BALANCES;
+const fetchBalances = async ({ network, address }) => {
   const response = await client.BalanceService.getTokenBalancesForWalletAddress(
     network,
     address,
@@ -30,45 +29,35 @@ const fetchBalances = async ({network, address}) => {
 fetchBalances(params);
 
 // APPROVALS
-const fetchApprovals = async ({network, address}) => {
-  const response = await client.SecurityService.getApprovals(
-    network,
-    address
-  );
+const fetchApprovals = async ({ network, address }) => {
+  const response = await client.SecurityService.getApprovals(network, address);
   console.log(response.data);
 };
 
 fetchApprovals(params);
 
 // BLOCK
-const fetchBlock = async ({network}) => {
-  const response = await client.BaseService.getBlock(
-    network,
-    "latest"
-  );
+const fetchBlock = async ({ network }) => {
+  const response = await client.BaseService.getBlock(network, "latest");
   console.log(response.data);
 };
 
 fetchBlock(params);
 
 // TRANSACTION
-const fetchTransaction = async ({network, tx}) => {
-  const response = await client.TransactionService.getTransaction(
-    network,
-    tx,
-    {
-      quoteCurrency: "USD",
-      noLogs: false,
-      withSafe: true,
-    }
-  );
+const fetchTransaction = async ({ network, tx }) => {
+  const response = await client.TransactionService.getTransaction(network, tx, {
+    quoteCurrency: "USD",
+    noLogs: false,
+    withSafe: true,
+  });
   console.log(response.data);
 };
 
 fetchTransaction(params);
 
 //HISTORICAL TOKEN PRICE
-const fetchTokenPrice = async ({network, token}) => {
+const fetchTokenPrice = async ({ network, token }) => {
   const response = await client.PricingService.getTokenPrices(
     network,
     "USD",
@@ -85,9 +74,23 @@ const fetchTokenPrice = async ({network, token}) => {
 fetchTokenPrice(params);
 
 // GAS PRICES
-const fetchGasPrice = async ({network}) => {
-  const response = await client.BaseService.getGasPrices(network, "erc20", {quoteCurrency: "USD"})
-  console.log(response.data.items[0]);
-}
+const fetchGasPrice = async ({ network }) => {
+  const response = await client.BaseService.getGasPrices(network, "erc20", {
+    quoteCurrency: "USD",
+  });
+  console.log(response.data);
+};
 
-fetchGasPrice(params)
+fetchGasPrice(params);
+
+// NFTs
+const fetchNFTs = async ({ network, address }) => {
+  const response = await client.NftService.getNftsForAddress(network, address, {
+    noSpam: true,
+    noNftAssetMetadata: true,
+    withUncached: true,
+  });
+  console.log(response.data);
+};
+
+fetchNFTs(params);
