@@ -10,7 +10,7 @@ const params = {
   token: "0xcDA86A272531e8640cD7F1a92c01839911B90bb0",
 };
 
-BALANCES;
+//BALANCES;
 const fetchBalances = async ({ network, address }) => {
   const response = await client.BalanceService.getTokenBalancesForWalletAddress(
     network,
